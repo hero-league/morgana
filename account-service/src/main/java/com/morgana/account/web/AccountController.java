@@ -14,10 +14,13 @@ public class AccountController {
     @Value("${token:}")
     private String token;
 
+    @Value("${apparatus}")
+    private String apparatus;
+
     @GetMapping(value = "/model")
     public String getModel(@RequestParam("id") String id){
         log.info("model id = " + id);
-        return "account : " + id;
+        return "account : " + id + ", apparatus = " + apparatus;
     }
 
     @GetMapping(value = "/token")

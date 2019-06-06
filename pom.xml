@@ -12,6 +12,9 @@
         <module>gateway</module>
         <module>account-service</module>
         <module>statistics-service</module>
+        <module>common</module>
+        <module>auth-service</module>
+        <module>user-service</module>
     </modules>
 
     <parent>
@@ -31,6 +34,8 @@
         <commons-pool.version>2.5.0</commons-pool.version>
         <logstash.version>5.1</logstash.version>
         <logback-redis.version>1.1.5</logback-redis.version>
+        <guava-version>20.0</guava-version>
+        <jjwt-version>0.9.0</jjwt-version>
     </properties>
 
     <dependencyManagement>
