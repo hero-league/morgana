@@ -1,4 +1,4 @@
-package com.morgana.user.web;
+package com.morgana.user.api;
 
 import com.morgana.common.domain.user.AuthUser;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/rpc/user")
+public class UserApiController {
 
     @GetMapping("/loadUserByUsername/{username}")
     public AuthUser loadUserByUsername(@PathVariable(value = "username") String username){

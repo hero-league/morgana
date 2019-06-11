@@ -1,6 +1,7 @@
 package com.morgana.auth.config;
 
 
+import com.morgana.auth.security.ClientDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +32,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
-    private ClientDetailsService clientDetailsService;
+    private ClientDetailsService clientDetailsServiceImpl;
 
     @Bean
     public RedisTokenStore redisTokenStore() {
@@ -47,7 +48,11 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService);
+        clients.withClientDetails(clientDetailsServiceImpl);
+//        clients.inMemory().withClient("client")
+//                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
+//                .scopes("all")
+//                .secret("$2a$10$t1lM7GI3qPKX9vBcCyvFnO31a7yJzCgfSRJgyVEoIy19ojYgW2bXu");
     }
 
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
