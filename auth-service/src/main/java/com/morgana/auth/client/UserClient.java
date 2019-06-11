@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/user")
 public interface UserClient {
 
-    @GetMapping("/user/loadUserByUsername/{username}")
+    @GetMapping("/loadUserByUsername/{username}")
     AuthUser loadUserByUsername(@PathVariable(value = "username") String username);
 }
