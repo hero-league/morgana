@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgana.account.mapper.AccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.morgana.account.domain.Account">
+        <id column="id" property="id" />
+        <result column="create_id" property="createId" />
+        <result column="create_name" property="createName" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_id" property="modifyId" />
+        <result column="update_time" property="updateTime" />
+        <result column="modify_name" property="modifyName" />
+        <result column="lock_account" property="lockAccount" />
+        <result column="account" property="account" />
+        <result column="user_id" property="userId" />
+        <result column="version" property="version" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_id, create_name, create_time, modify_id, update_time, modify_name, lock_account, account, user_id, version
+    </sql>
+
+</mapper>

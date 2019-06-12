@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgana.user.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.morgana.user.domain.User">
+        <id column="id" property="id" />
+        <result column="mobile" property="mobile" />
+        <result column="name" property="name" />
+        <result column="role" property="role" />
+        <result column="examine" property="examine" />
+        <result column="is_delete" property="isDelete" />
+        <result column="address" property="address" />
+        <result column="code" property="code" />
+        <result column="examine_time" property="examineTime" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="pwd" property="pwd" />
+        <result column="sex" property="sex" />
+        <result column="status" property="status" />
+        <result column="invitation_code" property="invitationCode" />
+        <result column="poll_code" property="pollCode" />
+        <result column="owner_id" property="ownerId" />
+        <result column="parent_name" property="parentName" />
+        <result column="role_id" property="roleId" />
+        <result column="role_name" property="roleName" />
+        <result column="level" property="level" />
+        <result column="parent_id" property="parentId" />
+        <result column="parent_mobile" property="parentMobile" />
+        <result column="create_id" property="createId" />
+        <result column="create_name" property="createName" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_id" property="modifyId" />
+        <result column="modify_name" property="modifyName" />
+        <result column="update_time" property="updateTime" />
+        <result column="email" property="email" />
+        <result column="website" property="website" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, mobile, name, role, examine, is_delete, address, code, examine_time, last_login_time, pwd, sex, status, invitation_code, poll_code, owner_id, parent_name, role_id, role_name, level, parent_id, parent_mobile, create_id, create_name, create_time, modify_id, modify_name, update_time, email, website
+    </sql>
+
+</mapper>

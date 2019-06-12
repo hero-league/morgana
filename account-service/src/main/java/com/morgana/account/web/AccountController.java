@@ -1,6 +1,10 @@
 package com.morgana.account.web;
 
+import com.morgana.account.service.AccountService;
+import com.morgana.common.domain.account.AccountDTO;
+import com.morgana.common.util.ResponseBo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
@@ -11,22 +15,18 @@ import org.springframework.web.bind.annotation.*;
 @RefreshScope
 public class AccountController {
 
-    @Value("${token:}")
-    private String token;
+    @Autowired
+    private AccountService accountService;
 
-    @Value("${apparatus}")
-    private String apparatus;
-
-    @GetMapping(value = "/model")
-    public String getModel(@RequestParam("id") String id){
-        log.info("model id = " + id);
-        return "account : " + id + ", apparatus = " + apparatus;
-    }
-
-    @GetMapping(value = "/token")
-    public String token(){
-        log.info("token : " + token);
-        return "token : " + token;
+    @PostMapping(value = "/save")
+    public ResponseBo save(@RequestBody AccountDTO accountDTO){
+        try {
+            accountService.create(accountDTO);
+            return ResponseBo.ok(true);
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseBo.getInstance(false).setCode(500);
+        }
     }
 
 }
