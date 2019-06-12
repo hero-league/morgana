@@ -7,13 +7,11 @@ import com.morgana.common.util.ResponseBo;
 import com.morgana.user.domain.User;
 import com.morgana.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.soap.Addressing;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -41,6 +39,19 @@ public class UserController {
             return ResponseBo.ok(false).setMessage(e.getMessage());
         }
     }
+
+    @GetMapping("/loadUserByUsername/{username}")
+    public AuthUser loadUserByUsername(@PathVariable(value = "username") String username){
+        AuthUser authUser = new AuthUser();
+        authUser.setCode("admin");
+        authUser.setName("Admin");
+        authUser.setId("0");
+        authUser.setPwd("$2a$10$P6tWj/K71NNnfFvE8ickr.7Pk/VaUK3ia.ziEIMUScfj3JYmPBDCy");
+        List<AuthUser.UserRole> roles = new ArrayList<>();
+        authUser.setUserRoles(roles);
+        return authUser;
+    }
+
 
 }
 

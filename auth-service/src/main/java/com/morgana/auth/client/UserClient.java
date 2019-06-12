@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient("user-service")
-@RequestMapping(value = "/rpc/user")
+@RequestMapping(value = "/user")
 public interface UserClient {
 
     @GetMapping("/loadUserByUsername/{username}")
