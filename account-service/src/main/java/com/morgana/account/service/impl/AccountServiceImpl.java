@@ -6,7 +6,9 @@ import com.morgana.account.mapper.AccountMapper;
 import com.morgana.account.service.AccountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.morgana.common.domain.account.AccountDTO;
+import com.morgana.common.exception.BaseException;
 import com.morgana.common.util.IdUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,9 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         BeanUtils.copyProperties(accountDTO, account);
         account.setId(idUtils.create());
         this.save(account);
+        if (StringUtils.isBlank(accountDTO.getCreateId())){
+            throw new BaseException("0000");
+        }
         return account;
     }
 }

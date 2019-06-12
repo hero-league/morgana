@@ -78,8 +78,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/uaa/oauth/**").permitAll()
-                .antMatchers("/api/open/**").permitAll()
+                .antMatchers("/api/uaa/oauth/**","/api/v3/**","/api/v2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());

@@ -17,8 +17,8 @@ public class OpenUserController {
     @Autowired
     private UserClient userClient;
 
-    @PostMapping(value = "/save")
-    public ResponseBo<?> save(@RequestBody AuthUser authUser){
+    @PostMapping(value = "/create")
+    public ResponseBo<?> create(@RequestBody AuthUser authUser){
         try {
             ResponseBo responseBo = userClient.save(authUser);
             return ResponseBo.ok(responseBo.getData());
