@@ -49,10 +49,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.withClientDetails(clientDetailsServiceImpl);
-//        clients.inMemory().withClient("client")
-//                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
-//                .scopes("all")
-//                .secret("$2a$10$t1lM7GI3qPKX9vBcCyvFnO31a7yJzCgfSRJgyVEoIy19ojYgW2bXu");
     }
 
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
