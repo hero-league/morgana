@@ -1,6 +1,6 @@
 package com.morgana.user.service.impl;
 
-import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.morgana.common.domain.account.AccountDTO;
 import com.morgana.common.domain.user.AuthUser;
 import com.morgana.common.exception.BaseException;
@@ -9,7 +9,7 @@ import com.morgana.user.client.AccountClinet;
 import com.morgana.user.domain.User;
 import com.morgana.user.mapper.UserMapper;
 import com.morgana.user.service.UserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private AccountClinet accountClinet;
 
     @Override
-    @LcnTransaction
-    @Transactional
+    @GlobalTransactional
     public User create(AuthUser authUser) throws BaseException {
         User user = new User();
         if (StringUtils.isBlank(authUser.getCode())){
@@ -49,14 +48,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setMobile(authUser.getCode());
         user.setId(idUtils.create());
         this.save(user);
-
-
         AccountDTO accountDTO = new AccountDTO();
         accountDTO.setUserId(user.getId());
         accountDTO.setAccount(new BigDecimal(0));
         accountDTO.setLockAccount(new BigDecimal(0));
-        accountClinet.save(accountDTO);
-
+        accountClinet.create(accountDTO);
         return user;
     }
 }

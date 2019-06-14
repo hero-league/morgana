@@ -1,10 +1,9 @@
 package com.morgana.account.service.impl;
 
-import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.morgana.account.domain.Account;
 import com.morgana.account.mapper.AccountMapper;
 import com.morgana.account.service.AccountService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.morgana.common.domain.account.AccountDTO;
 import com.morgana.common.exception.BaseException;
 import com.morgana.common.util.IdUtils;
@@ -29,16 +28,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     private IdUtils idUtils;
 
     @Override
-    @LcnTransaction
     @Transactional
     public Account create(AccountDTO accountDTO) {
         Account account = new Account();
         BeanUtils.copyProperties(accountDTO, account);
         account.setId(idUtils.create());
         this.save(account);
-        if (StringUtils.isBlank(accountDTO.getCreateId())){
-            throw new BaseException("0000");
-        }
         return account;
     }
 }

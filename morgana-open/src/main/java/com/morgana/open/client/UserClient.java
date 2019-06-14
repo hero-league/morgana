@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/user")
 public interface UserClient {
 
-    @PostMapping(value = "/save")
-    ResponseBo<?> save(@RequestBody AuthUser authUser);
+    @PostMapping(value = "/create")
+    ResponseBo<?> create(@RequestBody AuthUser authUser);
 
 }

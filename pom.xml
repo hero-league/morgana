@@ -15,7 +15,6 @@
         <module>common</module>
         <module>auth-service</module>
         <module>user-service</module>
-        <module>transaction</module>
         <module>morgana-open</module>
     </modules>
 

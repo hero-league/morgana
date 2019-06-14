@@ -20,7 +20,7 @@ public class OpenUserController {
     @PostMapping(value = "/create")
     public ResponseBo<?> create(@RequestBody AuthUser authUser){
         try {
-            ResponseBo responseBo = userClient.save(authUser);
+            ResponseBo responseBo = userClient.create(authUser);
             return ResponseBo.ok(responseBo.getData());
         } catch (BaseException e) {
             e.printStackTrace();

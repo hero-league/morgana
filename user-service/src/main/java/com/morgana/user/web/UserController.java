@@ -1,15 +1,19 @@
 package com.morgana.user.web;
 
 
+import com.morgana.common.domain.account.AccountDTO;
 import com.morgana.common.domain.user.AuthUser;
 import com.morgana.common.exception.BaseException;
 import com.morgana.common.util.ResponseBo;
+import com.morgana.user.client.AccountClinet;
 import com.morgana.user.domain.User;
 import com.morgana.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.soap.Addressing;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +32,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/save")
-    public ResponseBo<?> save(@RequestBody AuthUser authUser){
-        try {
-            User user = userService.create(authUser);
-            return ResponseBo.ok(user);
-
-        } catch (BaseException e) {
-            e.printStackTrace();
-            return ResponseBo.ok(false).setMessage(e.getMessage());
-        }
-    }
-
     @GetMapping("/loadUserByUsername/{username}")
     public AuthUser loadUserByUsername(@PathVariable(value = "username") String username){
         AuthUser authUser = new AuthUser();
@@ -52,6 +44,16 @@ public class UserController {
         return authUser;
     }
 
+    @PostMapping(value = "/create")
+    public ResponseBo<?> create(@RequestBody AuthUser authUser){
+        try {
+            userService.create(authUser);
+            return ResponseBo.ok(true);
+        } catch (BaseException e) {
+            e.printStackTrace();
+            return ResponseBo.ok(false).setMessage(e.getMessage());
+        }
+    }
 
 }
 
