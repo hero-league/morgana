@@ -5,6 +5,7 @@ import com.morgana.common.domain.account.AccountDTO;
 import com.morgana.common.domain.user.AuthUser;
 import com.morgana.common.exception.BaseException;
 import com.morgana.common.util.ResponseBo;
+import com.morgana.user.amqp.provider.UserSender;
 import com.morgana.user.client.AccountClinet;
 import com.morgana.user.domain.User;
 import com.morgana.user.service.UserService;
@@ -32,6 +33,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserSender userSender;
+
     @GetMapping("/loadUserByUsername/{username}")
     public AuthUser loadUserByUsername(@PathVariable(value = "username") String username){
         AuthUser authUser = new AuthUser();
@@ -54,6 +58,18 @@ public class UserController {
             return ResponseBo.ok(false).setMessage(e.getMessage());
         }
     }
+
+    @GetMapping(value = "/queue/send")
+    public ResponseBo<?> send(){
+        try {
+            userSender.transSend();
+            return ResponseBo.ok(true);
+        } catch (BaseException e) {
+            e.printStackTrace();
+            return ResponseBo.ok(false).setMessage(e.getMessage());
+        }
+    }
+
 
 }
 
