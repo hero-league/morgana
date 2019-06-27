@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface AccountClinet {
 
     @PostMapping(value = "/create")
-    ResponseBo create(@RequestBody AccountDTO accountDTO);
+    ResponseBo<Boolean> create(@RequestBody AccountDTO accountDTO);
 
 }

@@ -17,6 +17,7 @@
         <module>user-service</module>
         <module>morgana-open</module>
         <module>mq-service</module>
+        <module>tm-service</module>
     </modules>
 
     <parent>
